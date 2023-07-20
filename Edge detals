@@ -1,0 +1,39 @@
+Dilated Edges Smoothing:
+Dilated edges smoothing is a technique used in edge-preserving image smoothing to enhance the preservation of object boundaries while smoothing out non-edge regions. The process involves applying morphological dilation to the edges detected in the image. Dilation is an operation that expands the boundaries of the detected edges by adding pixels to the edges. By dilating the edges before applying smoothing techniques, we can ensure that the smoothing process avoids affecting the original object boundaries while smoothing the rest of the image.
+
+Details of Edge Smoothing Techniques with Dilated Edges:
+
+Gaussian Blur with Dilated Edges:
+Description: Gaussian blur applies a Gaussian kernel to the image while preserving edges enhanced by dilated edges. The dilated edges are used as a mask to preserve the original object boundaries during smoothing.
+Hyperparameters:
+kernel_size: A tuple specifying the size of the Gaussian kernel (width, height). A larger kernel size results in stronger smoothing.
+sigmaX: The standard deviation in the X direction of the Gaussian kernel. A larger value results in more smoothing.
+Bilateral Filter with Dilated Edges:
+Description: Bilateral filter smooths the image while preserving edges based on spatial and intensity similarity, enhanced by dilated edges. The dilated edges are used as a mask to maintain the original object boundaries.
+Hyperparameters:
+d: Diameter of each pixel neighborhood used during filtering. A larger value considers more pixels for smoothing.
+sigma_color: Filter sigma in the color space. A larger value results in stronger smoothing across dissimilar colors.
+sigma_space: Filter sigma in the coordinate space. A larger value considers pixels farther from the center of the kernel for smoothing.
+Median Filter with Dilated Edges:
+Description: Median filter replaces each pixel with the median value of its neighborhood while preserving edges enhanced by dilated edges. It effectively removes noise while keeping object boundaries intact.
+Hyperparameters:
+kernel_size: An odd integer specifying the size of the neighborhood window. A larger value removes more noise but may slightly blur edges.
+Anisotropic Diffusion with Dilated Edges:
+Description: Anisotropic diffusion iteratively diffuses the image while preventing diffusion across edges, enhanced by dilated edges. This technique effectively smooths the image while preserving object boundaries.
+Hyperparameters:
+n_iter: Number of diffusion iterations. A larger value allows more smoothing iterations.
+delta_t: Time step for diffusion. A smaller value results in slower diffusion and better edge preservation.
+kappa: Diffusion rate. A larger value reduces diffusion across edges, preserving boundaries.
+Non-Local Means Filter with Dilated Edges:
+Description: Non-Local Means filter estimates the pixel value based on similar patches in the image, with enhanced edge preservation from dilated edges. It effectively removes noise while preserving textures and object boundaries.
+Hyperparameters:
+h: Parameter controlling the strength of filtering. A larger value considers more patches and results in stronger denoising.
+h_for_color: Parameter controlling the strength of filtering in the color space for color images.
+template_window_size: The size of the window used to search for similar patches.
+search_window_size: The size of the window used to calculate the weighted mean for each pixel.
+Gradient-Based Method (Gradient Inverse Weighted Interpolation) with Dilated Edges:
+Description: This custom method scales down gradients near the edges to reduce sharpness, with enhanced edge preservation from dilated edges. The smoothing process avoids affecting the original object boundaries.
+Hyperparameters:
+alpha: Parameter controlling the scaling of gradients near edges.
+threshold: Gradients below this threshold are considered as edges.
+Using dilated edges with these smoothing techniques helps retain the original object boundaries while effectively reducing noise and smoothing the rest of the image. The selection of the appropriate edge smoothing method and its hyperparameters depends on the specific requirements of the image processing task and the desired level of smoothing and edge preservation.
